@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Post</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container create-post">
+        <h2 class="form-title">Create New Post</h2>
+        <form action="/create/userId" method="post">
+          <label>
+            Title
+            <input type="text" name="title" placeholder="Post Title" required />
+          </label>
+          <label>
+            Message
+            <input
+              type="text"
+              name="message"
+              placeholder="Write Post Text"
+              required
+            />
+          </label>
+          <button class="form-btn">Send Post</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

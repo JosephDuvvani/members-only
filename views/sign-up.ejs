@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container sign-up">
+        <h2 class="form-title">Sign Up</h2>
+        <form action="/sign-up" method="post">
+          <label>
+            Firstname *
+            <input
+              type="text"
+              name="firstname"
+              placeholder="Enter Firstname"
+              autocomplete="off"
+              required
+            />
+          </label>
+          <label>
+            Lastname
+            <input type="text" name="lastname" placeholder="Enter Lastname" />
+          </label>
+          <label>
+            Username
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter Username"
+              autocomplete="off"
+              required
+            />
+          </label>
+          <label>
+            Password *
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter Password"
+              required
+            />
+          </label>
+          <label>
+            Confirm Password *
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Enter Password Again"
+              required
+            />
+          </label>
+          <label>
+            Is Admin?
+            <input type="checkbox" name="isAdmin" required />
+          </label>
+          <button class="form-btn">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
