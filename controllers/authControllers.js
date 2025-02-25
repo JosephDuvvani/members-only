@@ -1,5 +1,5 @@
 import { body, validationResult } from "express-validator";
-import { changeToAdmin, getUserByUsername } from "../db/queries.js";
+import { addNewPost, changeToAdmin, getUserByUsername } from "../db/queries.js";
 import { addUser } from "../db/queries.js";
 import passport from "passport";
 import { configDotenv } from "dotenv";
@@ -71,4 +71,11 @@ const adminCodePost = async (req, res, next) => {
   }
 };
 
-export { signupPost, adminCodePost };
+const createMsgPost = async (req, res, next) => {
+  const { title, message } = req.body;
+  const { id } = req.user;
+  await addNewPost({ title, message, id });
+  res.redirect("/");
+};
+
+export { signupPost, adminCodePost, createMsgPost };

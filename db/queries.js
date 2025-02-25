@@ -31,4 +31,14 @@ const changeToAdmin = async (username) => {
   );
 };
 
-export { getUserByUsername, addUser, changeToAdmin };
+const addNewPost = async ({ title, message, id }) => {
+  await pool.query(
+    `
+      INSERT INTO messages (title, message, timestamp, userId) 
+      VALUES ($1, $2, (SELECT NOW()), $3);
+    `,
+    [title, message, id]
+  );
+};
+
+export { getUserByUsername, addUser, changeToAdmin, addNewPost };

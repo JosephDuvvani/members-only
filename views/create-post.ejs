@@ -9,19 +9,19 @@
     <div class="container">
       <div class="form-container create-post">
         <h2 class="form-title">Create New Post</h2>
-        <form action="/create/userId" method="post">
+        <form action="/createPost" method="post">
           <label>
             Title
             <input type="text" name="title" placeholder="Post Title" required />
           </label>
           <label>
             Message
-            <input
+            <textarea
               type="text"
               name="message"
               placeholder="Write Post Text"
               required
-            />
+            ></textarea>
           </label>
           <button class="form-btn">Send Post</button>
         </form>

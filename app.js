@@ -8,6 +8,7 @@ import {
 import passport from "passport";
 import { sessionStore, localStrategy } from "./db/pgSession.js";
 import { pool } from "./db/pool.js";
+import { postRouter } from "./routes/postRouter.js";
 
 const app = express();
 
@@ -43,6 +44,6 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => res.render("index"));
-app.use("/", signUpRouter, loginRouter, logoutRouter, adminRouter);
+app.use("/", signUpRouter, loginRouter, logoutRouter, adminRouter, postRouter);
 
 app.listen(3000);
