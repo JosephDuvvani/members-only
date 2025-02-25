@@ -20,4 +20,15 @@ const addUser = async ({ firstname, lastname, username, password }) => {
   );
 };
 
-export { getUserByUsername, addUser };
+const changeToAdmin = async (username) => {
+  await pool.query(
+    `
+      UPDATE users
+        SET isAdmin = true
+      WHERE username = $1
+    `,
+    [username]
+  );
+};
+
+export { getUserByUsername, addUser, changeToAdmin };

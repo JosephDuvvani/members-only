@@ -7,9 +7,10 @@
   </head>
   <body>
     <div class="container">
+      <% if (locals.currentUser) { %>
       <div class="form-container admin-code">
         <h3 class="form-title">Admin Secret Code</h3>
-        <form action="/admin-code/userId" method="post">
+        <form action="/adminCode/<%= currentUser.username %>" method="post">
           <label>
             Admin Code *
             <input
@@ -23,6 +24,8 @@
           <button class="form-btn">Submit</button>
         </form>
       </div>
+      <a href="/">Skip</a>
+      <% } %>
     </div>
   </body>
 </html>

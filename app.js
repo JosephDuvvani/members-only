@@ -3,6 +3,7 @@ import {
   signUpRouter,
   loginRouter,
   logoutRouter,
+  adminRouter,
 } from "./routes/authRouter.js";
 import passport from "passport";
 import { sessionStore, localStrategy } from "./db/pgSession.js";
@@ -42,6 +43,6 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => res.render("index"));
-app.use("/", signUpRouter, loginRouter, logoutRouter);
+app.use("/", signUpRouter, loginRouter, logoutRouter, adminRouter);
 
 app.listen(3000);

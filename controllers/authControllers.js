@@ -1,10 +1,13 @@
 import { body, validationResult } from "express-validator";
-import { getUserByUsername } from "../db/queries.js";
+import { changeToAdmin, getUserByUsername } from "../db/queries.js";
 import { addUser } from "../db/queries.js";
+import passport from "passport";
+import { configDotenv } from "dotenv";
+
+configDotenv();
 
 const alphaErr = "must only contain letters.";
 const emptyTextErr = "must contain 1 or more characters";
-const lengthErr = "must be between 1 and 10 characters.";
 
 const validateUser = [
   body("firstname")
@@ -25,7 +28,7 @@ const validateUser = [
       }
     }),
   body("password")
-    .isLength({ min: 8, max: 50 })
+    .isLength({ min: 3, max: 50 })
     .withMessage("Password must be 8 or more characters"),
   body("confirmPassword").custom((value, { req }) => {
     if (value !== req.body.password) {
@@ -45,7 +48,27 @@ const signupPost = [
       return;
     }
     await addUser(req.body);
+    if (req.body.isAdmin) {
+      const username = req.body.username;
+      passport.authenticate("local")(req, res, () => {
+        res.redirect(`/adminCode/${username}`);
+      });
+    } else {
+      passport.authenticate("local")(req, res, () => {
+        res.redirect("/");
+      });
+    }
   },
 ];
 
-export { signupPost };
+const adminCodePost = async (req, res, next) => {
+  const isAdmin = req.body.adminCode === process.env.ADMIN_CODE;
+  if (isAdmin) {
+    await changeToAdmin(req.params.username);
+    res.redirect("/");
+  } else {
+    res.redirect("/");
+  }
+};
+
+export { signupPost, adminCodePost };
