@@ -4,8 +4,34 @@
   </head>
   <body>
     <div class="container">
+      <% if (locals.currentUser) { %>
+      <div><%- include('header') %></div>
+      <main>
+        <div class="posts-container">
+          <a href="/createPost" class="nav-btn">Create Post</a>
+          <% if (locals.posts) { %>
+          <ul class="post-list">
+            <% for (let post of posts){ %>
+            <li>
+              <div class="post-card">
+                <h3 class="title"><%= post.title %></h3>
+                <div class="message"><%= post.message %></div>
+                <% if (currentUser.ismember) { %>
+                <div class="author">Author: <%= post.author %></div>
+                <div class="timestamp"><%= post.timestamp %></div>
+                <% } %>
+              </div>
+            </li>
+            <% } %>
+          </ul>
+          <% } else { %>
+          <div>No posts</div>
+          <% } %>
+        </div>
+      </main>
+      <% } else { %>
       <a href="/sign-up">Sign Up</a>
-      <%- include('login') %>
+      <%- include('login') %> <% } %>
     </div>
   </body>
 </html>

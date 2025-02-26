@@ -22,7 +22,12 @@
           </label>
           <label>
             Lastname
-            <input type="text" name="lastname" placeholder="Enter Lastname" />
+            <input
+              type="text"
+              name="lastname"
+              placeholder="Enter Lastname"
+              autocomplete="off"
+            />
           </label>
           <label>
             Username
@@ -54,10 +59,17 @@
           </label>
           <label>
             Is Admin?
-            <input type="checkbox" name="isAdmin" required />
+            <input type="checkbox" name="isAdmin" />
           </label>
           <button class="form-btn">Sign Up</button>
         </form>
+        <% if (locals.errors) { %>
+        <ul>
+          <% for (let err of errors){ %>
+          <li><%= err.msg %></li>
+          <% } %>
+        </ul>
+        <% } %>
       </div>
     </div>
   </body>

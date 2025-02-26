@@ -53,10 +53,20 @@ const addNewPost = async ({ title, message, id }) => {
   );
 };
 
+const getAllPosts = async () => {
+  const { rows } = await pool.query(`
+      SELECT title, message, timestamp, firstname, lastname FROM messages 
+        JOIN users ON userId = users.id 
+      ORDER BY timestamp DESC;
+    `);
+  return rows;
+};
+
 export {
   getUserByUsername,
   addUser,
   changeToAdmin,
   changeToMember,
   addNewPost,
+  getAllPosts,
 };

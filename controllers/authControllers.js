@@ -21,7 +21,12 @@ const validateUser = [
     .withMessage(`Firstname ${alphaErr}`)
     .isLength({ min: 1 })
     .withMessage(`Firstname ${emptyTextErr}`),
-  body("lastname").trim().isAlpha().withMessage(`Lastname ${alphaErr}`),
+  body("lastname")
+    .trim()
+    .optional({ checkFalsy: true })
+    .notEmpty()
+    .isAlpha()
+    .withMessage(`Lastname ${alphaErr}`),
   body("username")
     .trim()
     .isLength({ min: 1 })

@@ -1,0 +1,15 @@
+<header>
+  <div class="logo"><a href="/">Tance</a></div>
+  <div>
+    <% if (!currentUser.ismember) { %>
+    <a href="/join" class="nav-btn">Join Club</a>
+    <% } %>
+    <form action="/logout" method="get">
+      <button class="logout-btn">Logout</button>
+    </form>
+    <div class="user">
+      <span><%= currentUser.firstname %></span>
+      <span class="username">(@<%= currentUser.username %>)</span>
+    </div>
+  </div>
+</header>
