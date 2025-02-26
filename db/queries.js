@@ -31,6 +31,18 @@ const changeToAdmin = async (username) => {
   );
 };
 
+const changeToMember = async (id) => {
+  console.log(id);
+  await pool.query(
+    `
+      UPDATE users 
+        SET isMember = true 
+      WHERE id = $1
+    `,
+    [id]
+  );
+};
+
 const addNewPost = async ({ title, message, id }) => {
   await pool.query(
     `
@@ -41,4 +53,10 @@ const addNewPost = async ({ title, message, id }) => {
   );
 };
 
-export { getUserByUsername, addUser, changeToAdmin, addNewPost };
+export {
+  getUserByUsername,
+  addUser,
+  changeToAdmin,
+  changeToMember,
+  addNewPost,
+};

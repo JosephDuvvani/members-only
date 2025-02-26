@@ -1,5 +1,10 @@
 import { body, validationResult } from "express-validator";
-import { addNewPost, changeToAdmin, getUserByUsername } from "../db/queries.js";
+import {
+  addNewPost,
+  changeToAdmin,
+  changeToMember,
+  getUserByUsername,
+} from "../db/queries.js";
 import { addUser } from "../db/queries.js";
 import passport from "passport";
 import { configDotenv } from "dotenv";
@@ -71,6 +76,16 @@ const adminCodePost = async (req, res, next) => {
   }
 };
 
+const memberCodePost = async (req, res, next) => {
+  const isMember = req.body.passcode === process.env.MEMBER_PASSCODE;
+  if (isMember) {
+    await changeToMember(req.user.id);
+    res.redirect("/");
+  } else {
+    res.redirect("/");
+  }
+};
+
 const createMsgPost = async (req, res, next) => {
   const { title, message } = req.body;
   const { id } = req.user;
@@ -78,4 +93,4 @@ const createMsgPost = async (req, res, next) => {
   res.redirect("/");
 };
 
-export { signupPost, adminCodePost, createMsgPost };
+export { signupPost, adminCodePost, memberCodePost, createMsgPost };

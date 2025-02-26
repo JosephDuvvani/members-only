@@ -1,11 +1,16 @@
 import { Router } from "express";
-import { adminCodePost, signupPost } from "../controllers/authControllers.js";
+import {
+  adminCodePost,
+  memberCodePost,
+  signupPost,
+} from "../controllers/authControllers.js";
 import passport from "passport";
 
 const signUpRouter = Router();
 const loginRouter = Router();
 const logoutRouter = Router();
 const adminRouter = Router();
+const memberRouter = Router();
 
 signUpRouter.get("/sign-up", (req, res) => {
   if (req.user) {
@@ -41,4 +46,14 @@ adminRouter.get("/adminCode/:username", (req, res, next) => {
 
 adminRouter.post("/adminCode/:username", adminCodePost);
 
-export { signUpRouter, loginRouter, logoutRouter, adminRouter };
+memberRouter.get("/join", (req, res) => {
+  if (req.user) {
+    res.render("join");
+  } else {
+    res.end("<h1>Unauthorized url</h1>");
+  }
+});
+
+memberRouter.post("/join", memberCodePost);
+
+export { signUpRouter, loginRouter, logoutRouter, adminRouter, memberRouter };

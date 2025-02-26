@@ -4,6 +4,7 @@ import {
   loginRouter,
   logoutRouter,
   adminRouter,
+  memberRouter,
 } from "./routes/authRouter.js";
 import passport from "passport";
 import { sessionStore, localStrategy } from "./db/pgSession.js";
@@ -44,6 +45,14 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => res.render("index"));
-app.use("/", signUpRouter, loginRouter, logoutRouter, adminRouter, postRouter);
+app.use(
+  "/",
+  signUpRouter,
+  loginRouter,
+  logoutRouter,
+  adminRouter,
+  postRouter,
+  memberRouter
+);
 
 app.listen(3000);
