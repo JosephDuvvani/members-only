@@ -1,15 +1,21 @@
 <header>
-  <div class="logo"><a href="/">Tance</a></div>
-  <div>
+  <div class="logo">
+    <a href="/" class="a-btn">fenxmi<span class="logo-t">t</span></a>
+  </div>
+  <div class="flex-1 align-c">
     <% if (!currentUser.ismember) { %>
-    <a href="/join" class="nav-btn">Join Club</a>
+    <a href="/join" class="a-btn header-btn">Join Club</a>
+    <% } %> <% if (!currentUser.isadmin) { %>
+    <a href="/adminCode/<%= currentUser.username %>" class="a-btn header-btn"
+      >Admin</a
+    >
     <% } %>
     <form action="/logout" method="get">
-      <button class="logout-btn">Logout</button>
+      <button class="logout-btn header-btn">Logout</button>
     </form>
     <div class="user">
       <span><%= currentUser.firstname %></span>
-      <span class="username">(@<%= currentUser.username %>)</span>
+      <span class="username">@<%= currentUser.username %></span>
     </div>
   </div>
 </header>

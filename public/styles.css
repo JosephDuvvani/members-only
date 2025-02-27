@@ -1,0 +1,271 @@
+:root {
+    --box-shadow: 0 2px 10px hsl(0, 0%, 0%, .1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+svg {
+    width: 1.5rem;
+}
+
+.flex-1 {
+    display: flex;
+    gap: 1rem;
+}
+
+.align-c {
+    align-items: center;
+}
+
+.a-btn {
+    text-decoration: none;
+    color: inherit;
+}
+
+.align-s-c {
+    align-self: center;
+}
+
+.clr-red {
+    color: hsl(0, 80%, 55%);
+}
+
+body {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    background-color: hsl(0, 0%, 99%);
+}
+
+.container {
+    display: grid;
+    min-height: 100svh;
+}
+
+.container.home {
+    display: block;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    background-color: #fff;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-family: 'Kumar One Outline';
+    padding-left: 1rem;
+    padding-block: .75rem .25rem;
+}
+
+.logo-t {
+    display: inline-block;
+    transform: scale(-1, 1);
+}
+
+.header-btn {
+    font-size: .9rem;
+    padding: .2rem .5rem;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    background-color: hsl(220, 80%, 70%);
+}
+
+.logout-btn {
+    background-color: hsl(220, 80%, 55%);
+}
+
+.user {
+    display: grid;
+    font-weight: 600;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding-inline: 1rem;
+    border-left: 2px solid hsl(0, 0%, 90%);
+}
+
+.user .username {
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+main {
+    padding: 1.5rem 1rem;
+}
+
+.posts-container {
+    max-width: 40rem;
+    margin: auto;
+}
+
+.create-btn {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.create-btn:hover,
+.create-btn:focus {
+    background-color: hsl(160, 70%, 72%);
+}
+
+.create-btn,
+.post-card {
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    border-radius: 4px;
+}
+
+.create-btn .icon {
+    background-color: hsl(120, 50%, 95%);
+    border-radius: 50vh;
+    padding: .2rem;
+}
+
+.post-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.post-card .title {
+    font-size: 1.2rem;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    margin-bottom: 1rem;
+}
+
+.post-card .message {
+    color: hsl(0, 0%, 30%);
+}
+
+.post-card .author {
+    margin-top: 1rem;
+}
+
+.author span,
+.post-card .timestamp {
+    font-size: .9rem;
+}
+
+.post-card .timestamp {
+    text-align: right;
+    color: hsl(0, 0%, 30%);
+}
+
+.form-container {
+    max-width: 25rem;
+    margin: auto;
+    padding: 1.5rem;
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    position: relative;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-family: 'Kumar One Outline', Arial, Helvetica, sans-serif;
+    width: fit-content;
+    margin: 0 auto 1rem;
+}
+
+.form-subtitle {
+    position: absolute;
+    top: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: .9rem;
+    color: hsl(0, 0%, 60%);
+}
+
+.form-container form {
+    display: grid;
+    gap: 1rem;
+}
+
+.form-container form label:not([class="checkbox-label"]) {
+    display: grid;
+    gap: .3rem;
+}
+
+.msg-area,
+input {
+    font-size: .9rem;
+    padding: .5rem;
+    background-color: hsl(0, 0%, 98%);
+    border: 1px solid hsl(0, 0%, 80%);
+}
+
+.msg-area:focus,
+input:focus {
+    outline: none;
+    border: 1px solid hsl(0, 0%, 60%);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    cursor: pointer;
+}
+.checkbox-label span {
+    order: 2;
+}
+
+.form-btn {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    padding: .5rem;
+    border: 0;
+    color: #fff;
+    background-color: hsl(220, 80%, 70%);
+}
+
+.form-redirect {
+    margin-top: 1rem;
+}
+
+.form-redirect a {
+    color: hsl(220, 80%, 55%);
+}
+
+.create-post {
+    max-width: 35rem;
+}
+
+.msg-area {
+    height: 12ch;
+    resize: none;
+}
+
+.form-redirect.cancel {
+    justify-self: end;
+}
+
+.form-redirect.cancel a {
+    color: hsl(0, 80%, 60%);
+}

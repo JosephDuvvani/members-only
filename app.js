@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import {
   signUpRouter,
   loginRouter,
@@ -20,6 +21,10 @@ app.set("view engine", "ejs");
 app.use(sessionStore);
 app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
+
+const __dirname = path.resolve();
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
 
 passport.use(localStrategy);
 

@@ -1,14 +1,29 @@
 <html>
   <head>
     <title>Members Only</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumar+One+Outline&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="container">
+    <div class="container<%= currentUser ? ' home' : '' %>">
       <% if (locals.currentUser) { %>
       <div><%- include('header') %></div>
       <main>
         <div class="posts-container">
-          <a href="/createPost" class="nav-btn">Create Post</a>
+          <a href="/createPost" class="create-btn a-btn">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>plus</title>
+                <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+              </svg>
+            </div>
+            Create Post
+          </a>
           <% if (locals.posts) { %>
           <ul class="post-list">
             <% for (let post of posts){ %>
@@ -17,7 +32,10 @@
                 <h3 class="title"><%= post.title %></h3>
                 <div class="message"><%= post.message %></div>
                 <% if (currentUser.ismember) { %>
-                <div class="author">Author: <%= post.author %></div>
+                <div class="author">
+                  <span>Author: </span>
+                  <%= post.author %>
+                </div>
                 <div class="timestamp"><%= post.timestamp %></div>
                 <% } %>
               </div>
@@ -29,9 +47,7 @@
           <% } %>
         </div>
       </main>
-      <% } else { %>
-      <a href="/sign-up">Sign Up</a>
-      <%- include('login') %> <% } %>
+      <% } else { %> <%- include('login') %> <% } %>
     </div>
   </body>
 </html>
