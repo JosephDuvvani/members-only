@@ -1,5 +1,6 @@
 :root {
     --box-shadow: 0 2px 10px hsl(0, 0%, 0%, .1);
+    --clr-gray: hsl(0, 0%, 50%);
 }
 
 * {
@@ -72,6 +73,7 @@ header {
     font-family: 'Kumar One Outline';
     padding-left: 1rem;
     padding-block: .75rem .25rem;
+    color: var(--clr-gray);
 }
 
 .logo-t {
@@ -99,6 +101,7 @@ header {
     text-align: center;
     padding-inline: 1rem;
     border-left: 2px solid hsl(0, 0%, 90%);
+    color: var(--clr-gray);
 }
 
 .user .username {
@@ -186,6 +189,7 @@ main {
     font-family: 'Kumar One Outline', Arial, Helvetica, sans-serif;
     width: fit-content;
     margin: 0 auto 1rem;
+    color: hsl(0, 0%, 50%);
 }
 
 .form-subtitle {
@@ -266,6 +270,18 @@ input:focus {
     justify-self: end;
 }
 
+.form-error,
 .form-redirect.cancel a {
     color: hsl(0, 80%, 60%);
+}
+
+input.error {
+    border-color: hsl(0, 80%, 60%);
+}
+
+.form-error {
+    font-size: .9rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: .5rem;
+    text-align: center;
 }

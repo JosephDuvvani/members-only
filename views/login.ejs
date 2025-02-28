@@ -16,6 +16,9 @@
       Don't have an account?
       <a href="/sign-up" class="a-btn">Signup</a>
     </div>
+    <% if (locals.error) { %>
+    <div class="form-error"><%= error %></div>
+    <% } %>
   </div>
 </div>
 <div></div>

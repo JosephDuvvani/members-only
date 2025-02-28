@@ -19,7 +19,9 @@ const homepage = async (req, res, next) => {
     });
     res.render("index", { posts });
   } else {
-    res.render("index");
+    res.render("index", {
+      error: req.session.messages ? req.session.messages[0] : null,
+    });
   }
 };
 

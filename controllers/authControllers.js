@@ -17,10 +17,10 @@ const emptyTextErr = "must contain 1 or more characters";
 const validateUser = [
   body("firstname")
     .trim()
-    .isAlpha()
-    .withMessage(`Firstname ${alphaErr}`)
     .isLength({ min: 1 })
-    .withMessage(`Firstname ${emptyTextErr}`),
+    .withMessage(`Firstname ${emptyTextErr}`)
+    .isAlpha()
+    .withMessage(`Firstname ${alphaErr}`),
   body("lastname")
     .trim()
     .optional({ checkFalsy: true })
@@ -31,6 +31,8 @@ const validateUser = [
     .trim()
     .isLength({ min: 1 })
     .withMessage(`Username ${emptyTextErr}`)
+    .isAlpha()
+    .withMessage(`Username ${alphaErr}`)
     .custom(async (value) => {
       const existingUser = await getUserByUsername(value);
       if (existingUser) {
@@ -38,7 +40,7 @@ const validateUser = [
       }
     }),
   body("password")
-    .isLength({ min: 3, max: 50 })
+    .isLength({ min: 8, max: 50 })
     .withMessage("Password must be 8 or more characters"),
   body("confirmPassword").custom((value, { req }) => {
     if (value !== req.body.password) {
@@ -54,7 +56,7 @@ const signupPost = [
   async (req, res) => {
     const { errors } = validationResult(req);
     if (errors.length > 0) {
-      res.status(400).render("sign-up", { errors });
+      res.status(400).render("sign-up", { error: errors[0], values: req.body });
       return;
     }
     await addUser(req.body);

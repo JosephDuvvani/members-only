@@ -21,13 +21,27 @@ signUpRouter.get("/sign-up", (req, res) => {
 });
 signUpRouter.post("/sign-up", signupPost);
 
-loginRouter.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/",
-  })
-);
+loginRouter.post("/login", (req, res) => {
+  passport.authenticate("local", (err, user, options) => {
+    if (user) {
+      // If the user exists log him in:
+      req.login(user, (error) => {
+        if (error) {
+          res.send(error);
+        } else {
+          // HANDLE SUCCESSFUL LOGIN
+          res.redirect("/");
+        }
+      });
+    } else {
+      // HANDLE FAILURE LOGGING IN
+      res.render("index", {
+        error: options.message || "Invalid login details",
+      });
+      res.end();
+    }
+  })(req, res);
+});
 
 logoutRouter.get("/logout", (req, res, next) => {
   req.logout((err) => {
