@@ -175,6 +175,23 @@ main {
     color: hsl(0, 0%, 30%);
 }
 
+.delete-post {
+    padding: .3rem;
+    border: 0;
+    border-radius: 50vh;
+    background-color: transparent;
+}
+
+.delete-post:hover,
+.delete-post:focus {
+    outline: 0;
+    background-color: hsl(0, 0%, 95%);
+}
+
+.delete-post span {
+    fill: hsl(250, 100%, 30%);
+}
+
 .form-container {
     max-width: 25rem;
     margin: auto;

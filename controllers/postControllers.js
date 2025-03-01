@@ -1,4 +1,4 @@
-import { getAllPosts } from "../db/queries.js";
+import { deleteMessage, getAllPosts } from "../db/queries.js";
 import { format } from "date-fns";
 
 const homepage = async (req, res, next) => {
@@ -25,4 +25,13 @@ const homepage = async (req, res, next) => {
   }
 };
 
-export { homepage };
+const deletePost = async (req, res) => {
+  if (!req.user || !req.user.isadmin) {
+    res.end("<h1>Unauthorized url</h1>");
+    return;
+  }
+  await deleteMessage(req.params.id);
+  res.redirect("/");
+};
+
+export { homepage, deletePost };

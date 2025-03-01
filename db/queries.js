@@ -32,7 +32,6 @@ const changeToAdmin = async (username) => {
 };
 
 const changeToMember = async (id) => {
-  console.log(id);
   await pool.query(
     `
       UPDATE users 
@@ -55,11 +54,20 @@ const addNewPost = async ({ title, message, id }) => {
 
 const getAllPosts = async () => {
   const { rows } = await pool.query(`
-      SELECT title, message, timestamp, firstname, lastname FROM messages 
+      SELECT messages.id, title, message, timestamp, firstname, lastname FROM messages 
         JOIN users ON userId = users.id 
       ORDER BY timestamp DESC;
     `);
   return rows;
+};
+
+const deleteMessage = async (id) => {
+  await pool.query(
+    `
+      DELETE FROM messages WHERE id = $1
+    `,
+    [id]
+  );
 };
 
 export {
@@ -69,4 +77,5 @@ export {
   changeToMember,
   addNewPost,
   getAllPosts,
+  deleteMessage,
 };

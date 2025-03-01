@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createMsgPost } from "../controllers/authControllers.js";
+import { deletePost } from "../controllers/postControllers.js";
 
 const postRouter = Router();
 
@@ -12,5 +13,6 @@ postRouter.get("/createPost", (req, res) => {
 });
 
 postRouter.post("/createPost", createMsgPost);
+postRouter.post("/delete/:id", deletePost);
 
 export { postRouter };

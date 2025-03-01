@@ -31,12 +31,28 @@
               <div class="post-card">
                 <h3 class="title"><%= post.title %></h3>
                 <div class="message"><%= post.message %></div>
-                <% if (currentUser.ismember) { %>
+                <% if (currentUser.ismember || currentUser.isadmin) { %>
                 <div class="author">
                   <span>Author: </span>
                   <%= post.author %>
                 </div>
                 <div class="timestamp"><%= post.timestamp %></div>
+                <% } %> <% if (currentUser.isadmin) { %>
+                <form action="/delete/<%= post.id %>" method="post">
+                  <button class="delete-post" aria-label="Delete post">
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                      >
+                        <title>Delete</title>
+                        <path
+                          d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </form>
                 <% } %>
               </div>
             </li>
